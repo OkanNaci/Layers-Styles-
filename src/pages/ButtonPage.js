@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import { GoBell, GoBrowser, GoDatabase } from "react-icons/go";
 
 function ButtonPage() {
+  const handleClick = () => {};
   return (
     <div>
       <div>
@@ -28,7 +29,9 @@ function ButtonPage() {
         </Button>
       </div>
       <div>
-        <Button primary>haha</Button>
+        <Button primary onClick={handleClick}>
+          haha
+        </Button>
       </div>
     </div>
   );
