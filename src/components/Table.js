@@ -1,22 +1,25 @@
+import { Fragment } from "react";
+
 function Table({ fruits, config, keyFn }) {
-  const renderedHeaders = config.map((column) => {
-    return <th key={column.label}>{column.label}</th>;
-  });
+  const renderedHeaders = config.map((column) => (
+    <Fragment key={column.label}>
+      {column.header ? column.header() : column.label}
+    </Fragment>
+  ));
 
   const renderedRows = fruits.map((rowData) => {
-    const renderedCells = config.map((column) => {
-      return (
-        <td className="p-2" key={column.label}>
-          {column.render(rowData)}
-        </td>
-      );
-    });
+    const renderedCells = config.map((column) => (
+      <td className="p-2" key={column.label}>
+        {column.render(rowData)}
+      </td>
+    ));
     return (
       <tr key={keyFn(rowData)} className="border-b">
         {renderedCells}
       </tr>
     );
   });
+
   return (
     <table className="table-auto border-spacing-3">
       <thead>
@@ -26,4 +29,5 @@ function Table({ fruits, config, keyFn }) {
     </table>
   );
 }
+
 export default Table;
